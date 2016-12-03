@@ -1,0 +1,12 @@
+{
+  "name": "jsdevenv",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ajmoro <amr-hussien@hotmail.com> (https://github.com/aelshamy)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "localtunnel": "^1.8.2",
+    "open": "^0.0.5"
+  }
+}
