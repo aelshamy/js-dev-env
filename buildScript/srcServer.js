@@ -1,11 +1,12 @@
-const express = require("express");
-const path = require("path");
-const open = require("open");
+import express from "express";
+import path from "path";
+import open from "open";
+import browserSync from "browser-sync";
 const port = 3000;
 const app = express();
 
 if (app.get('env') == 'development') {
-    var browserSync = require('browser-sync');
+    
     var bs = browserSync({
         server: 'src',
         tunnel: 'ajmoro',
