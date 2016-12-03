@@ -4,9 +4,16 @@
   "main": "index.js",
   "author": "ajmoro <amr-hussien@hotmail.com> (https://github.com/aelshamy)",
   "license": "MIT",
+  "scripts": {
+    "prestart": "node buildScript/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src",
+    "open:src": "node buildScript/srcServer.js",
+    "security-check": "nsp check"
+  },
   "dependencies": {
     "express": "^4.14.0",
     "localtunnel": "^1.8.2",
+    "npm-run-all": "^3.1.2",
     "open": "^0.0.5"
   }
 }

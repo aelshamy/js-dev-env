@@ -1,17 +1,19 @@
 const express = require("express");
 const path = require("path");
 const open = require("open");
-const port  = 3000;
+const port = 3000;
 const app = express();
 
-app.get('/', function(req, res){
-    res.sendFile(path.join(__dirname, '../src/index.html'));
-})
+if (app.get('env') == 'development') {
+    var browserSync = require('browser-sync');
+    var bs = browserSync({
+        server: 'src',
+        tunnel: 'ajmoro',
+        logSnippet: false,
+    });
+    app.use(require('connect-browser-sync')(bs));
+}
 
-app.listen(port, function(err){
-    if(err){
-        console.log(err);
-    }else{
-        open('http://localhost:' + port);
-    }
-})
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, '../src/index.html'));
+});
