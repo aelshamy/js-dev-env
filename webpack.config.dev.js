@@ -2,9 +2,9 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
-  debug: true,
+  mode: 'development',
   devtool: 'inline-source-map',
-  noInfo: false,
+  // noInfo: false,
   entry: [
     path.resolve(__dirname, 'src/index')
   ],
@@ -22,10 +22,19 @@ export default {
     })
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loaders: ['style','css']},
-      { test: /\.handlebars$/, loader: "handlebars-loader" }
+    rules: [{
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.handlebars$/,
+        loader: "handlebars-loader"
+      }
     ]
   }
 }

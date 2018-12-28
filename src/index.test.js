@@ -1,22 +1,25 @@
-import { expect } from "chai";
-import { jsdom } from "jsdom";
+import {
+  expect
+} from "chai";
+import * as jsdom from 'jsdom';
 import fs from "fs";
 
+
+
 describe('Our first test', () => {
-    it('should pass', () => {
-        expect(true).to.equal(true);
-    })
+  it('should pass', () => {
+    expect(true).to.equal(true);
+  })
 });
 
 describe('index.html', () => {
-    it('should say Users', (done) => {
-        const index = fs.readFileSync('./src/index.html', "utf-8");
-        jsdom.env(index, (error, window) => {
-            const h1 = window.document.getElementsByTagName('h1')[0];
-            expect(h1.innerHTML).to.equal('Users');
-            done();
-            window.close();
-        });
-
-    })
+  const content = fs.readFileSync('./src/index.html', "utf-8");
+  const {
+    document
+  } = new jsdom.JSDOM(content).window;
+  it('should say Users', (done) => {
+    const h1 = document.querySelector('h1');
+    expect(h1.innerHTML).to.equal('Users');
+    done();
+  });
 });
